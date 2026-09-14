@@ -6,7 +6,7 @@ import bannerStack from "../assets/banner-stack.png";
 export default function HeroSection() {
   return (
     <>
-      <div className="grid grid-cols-2 justify-center items-center container mx-auto">
+      <div className="grid grid-cols-2 justify-center items-center container mx-auto my-10">
         <div className="space-y-4">
           <h2 className="text-5xl font-extrabold">
             Build Your Ideal{" "}
