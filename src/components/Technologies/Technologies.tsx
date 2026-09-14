@@ -15,7 +15,7 @@ export default function Technologies({ technologyPromise }: TechnologiesProps) {
 
   return (
     <>
-      <div className="container mx-auto">
+      <div className="container mx-auto mb-20">
         <h1 className="text-3xl font-bold">
           Explore the{" "}
           <span className="bg-linear-to-r from-orange-600 to-purple-600 bg-clip-text text-transparent">

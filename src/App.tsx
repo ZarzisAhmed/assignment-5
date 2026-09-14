@@ -3,7 +3,7 @@ import HeroSection from "./components/HeroSection";
 import NavBar from "./components/NavBar";
 import Technologies from "./components/Technologies/Technologies";
 import type { ITechnology } from "./types/TechnologyType";
-import { ToastContainer } from "react-toastify";
+import Footer from "./components/Footer";
 
 const technologyPromise = async (): Promise<ITechnology[]> => {
   const res = await fetch("../public/technologyData.json");
@@ -12,7 +12,6 @@ const technologyPromise = async (): Promise<ITechnology[]> => {
 };
 
 function App() {
-  <ToastContainer />;
   return (
     <>
       <NavBar></NavBar>
@@ -20,6 +19,7 @@ function App() {
       <Suspense fallback={<h1 className="text-2xl">Loading...</h1>}>
         <Technologies technologyPromise={technologyPromise()}></Technologies>
       </Suspense>
+      <Footer></Footer>
     </>
   );
 }
