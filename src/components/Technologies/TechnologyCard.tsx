@@ -1,11 +1,27 @@
 import { FaStar } from "react-icons/fa";
 import type { ITechnology } from "../../types/TechnologyType";
+import { useState, type Dispatch, type SetStateAction } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export interface TechnologyCardProps {
   tech: ITechnology;
+  selectedTechnology: ITechnology[];
+  setSelectedTechnology: Dispatch<SetStateAction<ITechnology[]>>;
 }
 
-export default function TechnologyCard({ tech }: TechnologyCardProps) {
+export default function TechnologyCard({
+  tech,
+  selectedTechnology,
+  setSelectedTechnology,
+}: TechnologyCardProps) {
+  const handleSelectedTechnology = () => {
+    const newTechnology = [...selectedTechnology, tech];
+    setSelectedTechnology(newTechnology);
+    setAddedToStack(true);
+    toast.success(`${tech.name} Added Successfully`);
+  };
+  const [addedToStack, setAddedToStack] = useState(false);
   return (
     <>
       <div className="card bg-base-100 shadow-sm">
@@ -29,7 +45,11 @@ export default function TechnologyCard({ tech }: TechnologyCardProps) {
             </p>
           </div>
           <div className="mt-6">
-            <button className="btn btn-primary btn-block bg-black">
+            <button
+              disabled={addedToStack === true}
+              onClick={handleSelectedTechnology}
+              className={`btn btn-primary btn-block bg-black ${addedToStack === true ? "bg-gray-300" : ""}`}
+            >
               Add to Stack
             </button>
           </div>

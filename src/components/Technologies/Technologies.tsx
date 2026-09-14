@@ -1,6 +1,7 @@
-import { use } from "react";
+import { use, useState } from "react";
 import type { ITechnology } from "../../types/TechnologyType";
 import TechnologyCard from "./TechnologyCard";
+import StackCard from "./StackCard";
 
 export interface TechnologiesProps {
   technologyPromise: Promise<ITechnology[]>;
@@ -8,6 +9,10 @@ export interface TechnologiesProps {
 
 export default function Technologies({ technologyPromise }: TechnologiesProps) {
   const technologies = use(technologyPromise);
+  const [selectedTechnology, setSelectedTechnology] = useState<ITechnology[]>(
+    [],
+  );
+
   return (
     <>
       <div className="container mx-auto">
@@ -22,10 +27,24 @@ export default function Technologies({ technologyPromise }: TechnologiesProps) {
         </p>
         <br />
         <br />
-        <div className="grid grid-cols-3 gap-5">
-          {technologies.map((tech) => (
-            <TechnologyCard tech={tech}></TechnologyCard>
-          ))}
+        <div className="grid grid-cols-4">
+          <div className="col-span-3">
+            <div className="grid grid-cols-3 gap-3">
+              {technologies.map((tech) => (
+                <TechnologyCard
+                  selectedTechnology={selectedTechnology}
+                  setSelectedTechnology={setSelectedTechnology}
+                  tech={tech}
+                ></TechnologyCard>
+              ))}
+            </div>
+          </div>
+          <div className="col-span-1">
+            <StackCard
+              selectedTechnology={selectedTechnology}
+              setSelectedTechnology={setSelectedTechnology}
+            ></StackCard>
+          </div>
         </div>
       </div>
     </>
